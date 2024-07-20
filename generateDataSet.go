@@ -434,8 +434,8 @@ var cityTemperatures = []CityTemperature{
 	{"Zürich", 9.3},
 }
 
-func generateCityTemperature() CityTemperature {
-	cityTemp := cityTemperatures[rand.Intn(len(cityTemperatures))]
+func generateCityTemperature(rng *rand.Rand) CityTemperature {
+	cityTemp := cityTemperatures[rng.Intn(len(cityTemperatures))]
 	return CityTemperature{
 		CityName: cityTemp.CityName,
 		Temp:     cityTemp.Temp,
@@ -444,7 +444,7 @@ func generateCityTemperature() CityTemperature {
 
 func generateDataset() {
 	// Seed the random number generator
-	rand.Seed(time.Now().UnixNano())
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	// Create the CSV file
 	file, err := os.Create("data/weather_stations.csv")
@@ -460,7 +460,7 @@ func generateDataset() {
 	for i := 0; i < numRows/batchSize; i++ {
 		var records [][]string
 		for j := 0; j < batchSize; j++ {
-			cityTemp := generateCityTemperature()
+			cityTemp := generateCityTemperature(rng)
 			records = append(records, []string{cityTemp.CityName, fmt.Sprintf("%.2f", cityTemp.Temp)})
 		}
 
