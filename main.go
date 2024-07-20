@@ -73,12 +73,12 @@ func consumeResults(results <-chan CityTemperature, cityStatsMap *sync.Map, wg *
 
 	for {
 		select {
-		case _, ok := <-results:
+		case result, ok := <-results:
 			if !ok {
 				continue
 			}
 			count++
-			// updateCityStats(cityStatsMap, result)
+			updateCityStats(cityStatsMap, result)
 			if count%1000 == 0 {
 				log.Println("Processed", count, "records")
 			}
