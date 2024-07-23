@@ -38,7 +38,7 @@ func SimplProcessFunc(filePath string) {
 
 	for fileScanner.Scan() {
 		line := fileScanner.Text()
-		cityTemp := strings.Split(line, ",")
+		cityTemp := strings.Split(line, ";")
 		cityName := cityTemp[0]
 		temp, err := strconv.ParseFloat(cityTemp[1], 64)
 		if err != nil {

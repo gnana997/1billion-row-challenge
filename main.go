@@ -6,6 +6,7 @@ import (
 
 	"github.com/gnana997/billion-rows-challenge/GenerateDataSet"
 	simpleprocess "github.com/gnana997/billion-rows-challenge/SimpleProcess"
+	mmapimplementation "github.com/gnana997/billion-rows-challenge/mmapImplementation"
 	"github.com/spf13/cobra"
 )
 
@@ -46,6 +47,19 @@ func main() {
 	}
 	readCmd.Flags().StringVarP(&filePath, "file", "f", "", "Name of the file to read")
 
-	rootCmd.AddCommand(createCmd, readCmd)
+	mmapCmd := &cobra.Command{
+		Use:   "use-basic-mmap",
+		Short: "Read a file and load it into mmap in memory and process it sequentially",
+		Run: func(cmd *cobra.Command, args []string) {
+			if filePath == "" {
+				fmt.Println("Please provide a file name using --file")
+				os.Exit(1)
+			}
+			mmapimplementation.MmapImplementationFunc(filePath)
+		},
+	}
+	mmapCmd.Flags().StringVarP(&filePath, "file", "f", "", "Name of the file to read")
+
+	rootCmd.AddCommand(createCmd, readCmd, mmapCmd)
 	rootCmd.Execute()
 }

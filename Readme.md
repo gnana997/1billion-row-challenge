@@ -17,3 +17,9 @@ Simple Process Command: Read and display the content of a specified file. This c
 ```bash
 ./1brc simple-process --file=largefile.txt
 ```
+
+Use MMap Command: Read and display the content of a specified file using memory mapping. This command is to process the file using memory mapping and is more efficient than the simple process command.
+
+```bash
+./1brc use-basic-mmap --file=largefile.txt
+```

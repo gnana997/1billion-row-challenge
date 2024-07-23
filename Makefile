@@ -24,6 +24,12 @@ run-read:
 	./out/$(BINARY_NAME) simple-process --file=data/test.txt
 	@echo "Read command executed."
 
+# Run the application with mmap command
+.PHONY: run-mmap
+run-mmap:
+	./out/$(BINARY_NAME) use-basic-mmap --file=data/test.txt
+	@echo "Mmap command executed."
+
 # Clean the binary
 .PHONY: clean
 clean:
