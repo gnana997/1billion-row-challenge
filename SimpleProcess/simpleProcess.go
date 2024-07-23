@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 	"time"
@@ -62,8 +63,26 @@ func SimplProcessFunc(filePath string) {
 		}
 	}
 
-	for cityName, measurement := range measurements {
+	PrintMeasurements(measurements)
+}
+
+func PrintMeasurements(measurements map[string]*SimpleMeasurements) {
+	cityNames := make([]string, 0, len(measurements))
+	for cityName, _ := range measurements {
+		cityNames = append(cityNames, cityName)
+	}
+
+	slices.Sort(cityNames)
+
+	fmt.Printf("{")
+	for idx, cityName := range cityNames {
+		measurement := measurements[cityName]
 		avg := measurement.Sum / float64(measurement.Count)
 		fmt.Printf("%s=%.1f/%.1f/%.1f", cityName, measurement.Min, avg, measurement.Max)
+
+		if idx < len(cityNames)-1 {
+			fmt.Printf(", ")
+		}
 	}
+	fmt.Printf("}\n")
 }

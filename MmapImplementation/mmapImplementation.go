@@ -67,8 +67,5 @@ func MmapImplementationFunc(filePath string) {
 	}
 
 	// Print the results
-	for cityName, measurement := range measurements {
-		avg := measurement.Sum / float64(measurement.Count)
-		fmt.Printf("%s=%.1f/%.1f/%.1f", cityName, measurement.Min, avg, measurement.Max)
-	}
+	simpleprocess.PrintMeasurements(measurements)
 }

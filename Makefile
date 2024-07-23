@@ -30,6 +30,11 @@ run-mmap:
 	./out/$(BINARY_NAME) use-basic-mmap --file=data/test.txt
 	@echo "Mmap command executed."
 
+# Run the application with parallel mmap command
+.PHONY: run-parallel-mmap
+run-parallel-mmap:
+	./out/$(BINARY_NAME) use-parallel-mmap --file=data/test.txt
+	@echo "Parallel mmap command executed."
 # Clean the binary
 .PHONY: clean
 clean:

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/gnana997/billion-rows-challenge/GenerateDataSet"
+	parallelmmapimplementation "github.com/gnana997/billion-rows-challenge/ParallelMmapImplementation"
 	simpleprocess "github.com/gnana997/billion-rows-challenge/SimpleProcess"
 	mmapimplementation "github.com/gnana997/billion-rows-challenge/mmapImplementation"
 	"github.com/spf13/cobra"
@@ -60,6 +61,19 @@ func main() {
 	}
 	mmapCmd.Flags().StringVarP(&filePath, "file", "f", "", "Name of the file to read")
 
-	rootCmd.AddCommand(createCmd, readCmd, mmapCmd)
+	paralleMmapCmd := &cobra.Command{
+		Use:   "use-parallel-mmap",
+		Short: "Read a file and load it into mmap in memory and process it sequentially",
+		Run: func(cmd *cobra.Command, args []string) {
+			if filePath == "" {
+				fmt.Println("Please provide a file name using --file")
+				os.Exit(1)
+			}
+			parallelmmapimplementation.ParallelMmapImplementation(filePath)
+		},
+	}
+	paralleMmapCmd.Flags().StringVarP(&filePath, "file", "f", "", "Name of the file to read")
+
+	rootCmd.AddCommand(createCmd, readCmd, mmapCmd, paralleMmapCmd)
 	rootCmd.Execute()
 }
