@@ -6,7 +6,7 @@ Just building this terminal application to have multiple solutions with differen
 
 # Features
 
-Create Command: Quickly create files with a specified name and content. This command is optimized to handle large inputs and can be used to generate files with a substantial amount of data.
+# Create Command: Quickly create files with a specified name and content. This command is optimized to handle large inputs and can be used to generate files with a substantial amount of data.
 
 - Takes Around 4mins to create a file with 1 billion rows of data.
 
@@ -14,7 +14,7 @@ Create Command: Quickly create files with a specified name and content. This com
 ./out/1brc create --file=largefile.txt --rows=1000000000
 ```
 
-Simple Process Command: Read and display the content of a specified file. This command is just to process the file in sequential and in very inefficient way
+# Simple Process Command: Read and display the content of a specified file. This command is just to process the file in sequential and in very inefficient way
 
 - Takes Around 2mins15secs to process a file with 1 billion rows of data.
 
@@ -22,7 +22,7 @@ Simple Process Command: Read and display the content of a specified file. This c
 ./out/1brc simple-process --file=largefile.txt
 ```
 
-Use MMap Command: Read and display the content of a specified file using memory mapping. This command is to process the file using memory mapping and is more efficient than the simple process command.
+# Use MMap Command: Read and display the content of a specified file using memory mapping. This command is to process the file using memory mapping and is more efficient than the simple process command.
 
 - Takes Around 2mins10secs to process a file with 1 billion rows of data.
 
@@ -30,7 +30,7 @@ Use MMap Command: Read and display the content of a specified file using memory 
 ./out/1brc use-basic-mmap --file=largefile.txt
 ```
 
-Use Parallel Mmap Command: Read and display the content of a specified file using memory mapping and processing the data parallely.
+# Use Parallel Mmap Command: Read and display the content of a specified file using memory mapping and processing the data parallely.
 
 - This command is to process the file using memory mapping and break into smaller chunks to process them parallely using go routines and is more efficient than the basic mmap process command.
 
